@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {
+  ChangeEvent,
+  SyntheticEvent,
+  useEffect,
+  useState,
+} from 'react'
+import './App.css'
+import socketClient from 'socket.io-client'
+const SERVER = 'http://localhost:8080'
 
-function App() {
+function App(): JSX.Element {
+  useEffect(() => {
+    const socket = socketClient(SERVER)
+
+    socket.on('connection', () => {
+      console.log("I'm connected with the back-end")
+    })
+  }, [])
+
+  const [value, setValue] = useState('')
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    setValue(e.target.value)
+  }
+  const onSend = (e: SyntheticEvent) => {
+    e.preventDefault()
+
+    // send to server with e.g. `window.fetch`
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="chat">
+      <div className="messages-container">Messages</div>
+      <form className="message-input" onSubmit={onSend}>
+        <input onChange={onChange} value={value} />
+        <button type="submit">SEND</button>
+      </form>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
