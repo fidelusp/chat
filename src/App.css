@@ -1,18 +1,47 @@
+
+
+.chat-container {
+    height: 100vh;
+    background: gray;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.chat {
+    margin-inline: 20px;
+    position: relative;
+    background: white;
+    width: 1000px;
+    height: 800px;
+}
+
+h3 {
+    margin-inline: 20px;
+}
+
+
 .messages-container {
-  /*height: 100%;*/
+    padding: 20px;
+    overflow: auto;
+    height: 580px;
+}
+
+.form-container {
+    margin-top: 40px;
+    margin-inline: 20px;
+}
+
+.message-form {
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .message-input {
-  position: fixed;
-  padding-bottom: 30px;
-  bottom: 0;
-  background-color: white;
-  max-width: 1200px;
-  width: 80%;
-  display: flex;
+    padding: 15px;
+    width: 80%;
 }
-
-
 
 
 
